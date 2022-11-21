@@ -1,0 +1,133 @@
+/* 
+ 90s computer screen effect
+*/
+
+
+/* stripes */
+:root:before{
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  background: repeating-linear-gradient(
+    0deg,
+    var(--dark),
+    var(--dark) 2px,
+    var(--darker) 2px,
+    var(--darker) 4px
+  );
+  z-index: -1;
+}
+
+/* border */
+:root:after{
+  content: '';
+  position: fixed;
+  top: -2vw;
+  left: -2vw;
+  width: 96vw;
+  height: calc(100vh - 4vw);
+  border: 4vw solid rgba(255,255,255,0.1);
+  border-radius: 6vw;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* gradient */
+body:before{
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(rgb(0 255 42 / 0%), rgb(0 0 0 / 62%));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* light band */
+body:after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100vw;
+  height: 30px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  animation: scroll-animation 1.4s infinite;
+  animation-timing-function: linear;
+}
+
+
+p,
+h1,
+h2,
+button{
+  text-shadow: 0px 0px 0.1em var(--light);
+  font-weight: normal
+}
+
+h1{
+  font-size: 2.4em;
+  text-shadow: 0px 0px 0.07em var(--light);
+}
+
+h2{
+  font-size: 1.2em;
+  text-shadow: 0px 0px 0.07em var(--light);
+}
+
+.node-index-route{
+  .node-status{
+    text-shadow: 0px 0px 0.1em var(--light);
+  }
+ 
+  .info{
+    text-shadow: 0px 0px 0.1em var(--light);
+  }
+}
+
+
+.node-card{
+  text-shadow: 0px 0px 0.07em var(--light);
+  header h1{
+    text-shadow: 0px 0px 0.05em var(--dark);
+  }
+}
+
+.toggle{
+  filter: blur(0.03em);
+}
+
+svg{
+  filter: blur(0.025em);
+}
+
+.login-panel{
+  text-shadow: 0px 0px 0.15em var(--light);
+}
+
+.connect-route{
+  .ascii-logo{
+    text-shadow: 0px 0px 0.18em var(--light);
+  }
+
+  .connect-error-message{
+    text-shadow: 0px 0px 0.125em var(--light);
+  }
+}
+
+.connect-form{
+  text-shadow: 0px 0px 0.2em var(--light);
+  input{
+    text-shadow: 0px 0px 0.15em var(--light);
+    
+  }
+
+  
+}

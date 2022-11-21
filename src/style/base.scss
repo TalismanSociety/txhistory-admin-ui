@@ -1,0 +1,121 @@
+:root {
+  --dark: rgb(54,90,60);
+  --darker: rgb(45, 80, 50);
+  --light: rgb(20, 220, 100);
+  --normalfont: 1em;
+  --smallerfont: 0.8em;
+  --largerfont: 1.3em;
+}
+
+*{
+  font-family: monospace;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+html,body{
+  color: var(--light);
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+html[data-mode='light']{
+  filter: invert(100%);
+}
+
+#root{
+  height: 100vh;
+  z-index: 10;
+  position: relative;
+}
+
+main {
+  position: relative;
+}
+
+/* fonts */
+h1{
+  font-size: 2.4em;
+  font-weight: normal
+}
+
+.layout-centered{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.layout-stacked{
+  display: block;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding: 3em;
+}
+
+main > header {
+  border-bottom: 1px solid var(--light);
+  padding: 1em;
+}
+
+main > .content {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+}
+
+main > .content > * {
+  vertical-align: center;
+}
+
+main > footer {
+  border-top: 1px solid var(--light);
+  padding: 1em;
+}
+
+
+
+
+button {
+  border-color: var(--light);
+  padding: 10px 20px;
+  color: var(--light);
+  background: none;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+button:not(button[disabled]):hover{
+  background: var(--light);
+  color: var(--dark);
+  text-shadow: none;
+  /* filter: saturate(0.8) */
+}
+
+button[disabled='true'],button[disabled]{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.smalltext{
+  font-size: 12px;
+}
+
+svg{
+  fill: currentColor;
+  text-shadow: 0px 0px 2px white;
+  filter: saturate(0.6);
+  font-size: inherit;
+  height: 1em;
+}
