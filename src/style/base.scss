@@ -61,50 +61,27 @@ h1{
   padding: 3em;
 }
 
-main > header {
-  border-bottom: 1px solid var(--light);
-  padding: 1em;
-}
-
-main > .content {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1em;
-}
-
-main > .content > * {
-  vertical-align: center;
-}
-
-main > footer {
-  border-top: 1px solid var(--light);
-  padding: 1em;
-}
-
-
-
-
 button {
   border-color: var(--light);
-  padding: 10px 20px;
+  padding: 0.75em 1.25em;
   color: var(--light);
   background: none;
   cursor: pointer;
   opacity: 0.7;
-}
+  user-select: none;
 
-button:not(button[disabled]):hover{
-  background: var(--light);
-  color: var(--dark);
-  text-shadow: none;
-  /* filter: saturate(0.8) */
-}
+  &:not(button[disabled]):hover{
+    background: var(--light);
+    color: var(--dark);
+    text-shadow: none;
+    /* filter: saturate(0.8) */
+  }
 
-button[disabled='true'],button[disabled]{
-  opacity: 0.5;
-  cursor: not-allowed;
+  &[disabled='true'],
+  button[disabled]{
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 
@@ -118,4 +95,5 @@ svg{
   filter: saturate(0.6);
   font-size: inherit;
   height: 1em;
+  user-select: none;
 }

@@ -43,34 +43,63 @@
   font-size: 12px;
 
   .node-status{
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     background: rgba(0,0,0,0.1);
-    padding: 0.6em 1.4em;
+    padding: 0.8em 1.4em;
     margin-top: 0.2em;
-    font-size: var(--fontsmall);
+    text-align: center;
+
+    .url{
+      font-size: var(--smallerfont);
+      color: var(--light)
+    }
+
+    .control{
+      margin-top: 0.7em;
+      display: flex;
+      align-items: center;
+      justify-items: space-between;
+
+      .login-button,
+      .logout-button,
+      .grafana-button,
+      .disconnect-button{
+        font-size: 12px;
+        padding: 0.2em 1em;
+      }
+
+      .mode{
+        display: flex;
+        >.toggle{
+          margin: 0 0.4em
+        }
+      }
+      
+      >*{
+        margin: 0 0.4em
+      }
+    }
   }
 
   .info{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .vr{
-      opacity: 0.5;
-    }
-
-    >span{
-      display: flex;
-      align-items: center;
-      margin: 0 0.2em;
-      padding: 0 0.2em;
-    }
   }
- 
-  .login-button,
-  .logout-button,
-  .disconnect-button{
-    padding: 2px 4px;
-    font-size: 12px;
-  }
+
+  .node-grid{
+    width: 100vw;
+    display: grid;
+    gap: 2em 2em;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 60rem;
+    width: 100%;
+    margin: 0 auto;
+
+    @media screen and (max-width: 940px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  } 
 }

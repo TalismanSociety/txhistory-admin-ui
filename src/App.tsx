@@ -3,8 +3,9 @@ import { DatasourceProvider, NodeProvider, AdminProvider, AppProvider } from './
 import { Stacked, Centered } from './layout'
 import { NodeIndex, Connect } from './routes'
 import './style/base.scss'
-import './style/components.scss'
+import './style/layout.scss'
 import './style/routes.scss'
+import './style/components.scss'
 import './style/animation.scss'
 import './style/blur.scss'
 

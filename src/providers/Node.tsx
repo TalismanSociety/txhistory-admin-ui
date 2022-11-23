@@ -135,7 +135,28 @@ export const useNode = (id: string): UseNodeType|undefined => {
     : undefined
 }
 
-export const useNodeContext = () => useContext<ContextProps>(Context)
+export const useNodeContext = () => {
+  const { nodes } = useContext<ContextProps>(Context)
+  
+
+  return useMemo(
+    () => {
+
+      const total = nodes.length
+      const indexing = nodes?.filter(node => node.enabled === true).length
+      const synced = nodes?.filter(node => node.enabled === true && node?.currentBlock >= node?.headBlock - 1).length
+      const syncing = indexing - synced
+
+      return {
+        nodes,
+        total, 
+        indexing, 
+        synced,
+        syncing
+      }
+    }, [nodes]
+  )
+}
 
 export const NodeProvider = ({children}: PropsWithChildren) => {
 

@@ -16,13 +16,14 @@ import {
 } from '../components'
 import {
   Sun,
-  Moon
+  Moon,
+  Network
 } from '../assets'
 
 
 export default () => {
   const { isDarkMode, setIsDarkMode } = useAppContext()
-  const { nodes } = useNodeContext()
+  const { nodes, total, indexing, synced, syncing } = useNodeContext()
   const { logout, status } = useAdminContext()
   const { url, disconnect } = useDatasourceContext()
   const [panelOpen, setPanelOpen] = useState<boolean>(false)
@@ -33,24 +34,37 @@ export default () => {
   return <div className='node-index-route'>
     <Talisman/>
     <h1 style={{marginBottom: 0}}>X-Chain TX History</h1>
-    <span className='node-status'>CONNECTED: {url} <button className='disconnect-button' onClick={() => {logout(); disconnect()}}>disconnect</button></span>
-    <Hr length={64}/>
-    <div className={'info'}>
-      <span>Nodes Available: {nodes.length||<Loader/>}</span>
-      <Vr/>
-      <span>Indexing: {nodes.filter(node => node.enabled === true).length||<Loader/>}</span>
-      <Vr/>
-      <span>
+    
+    <span className='node-status'>
+      <a className='url' href={url} target='_blank'>{url}</a>
+      <div className='control'>
         {
           status === 'LOGGEDIN' 
-            ? <>Admin&nbsp;<button className='logout-button' onClick={logout}>logout</button></>
-            : <>Anon&nbsp;<button className='login-button' onClick={() => setPanelOpen(true)}>login</button></>
+            ? <button className='logout-button' onClick={logout}>logout</button>
+            : <button className='login-button' onClick={() => setPanelOpen(true)}>admin</button>
         }
-      </span>
-      <Vr/>
-      <span><Sun/>&nbsp;<Toggle active={!!isDarkMode} onChange={setIsDarkMode}/>&nbsp;<Moon/></span>
+        <button className='grafana-button' onClick={() => {window.open(`https://grafana.infra.gc.subsquid.io/d/Jkgu9rqnz/squid?orgId=1&var-squid=${url.split('/')[3]}-${url.split('/')[5]}`, '_blank')}}>grafana</button>
+        <button className='disconnect-button' onClick={() => {logout(); disconnect()}}>disconnect</button>
+        <span className='mode'>
+          <Sun/>
+          <Toggle active={!!isDarkMode} onChange={setIsDarkMode}/>
+          <Moon/>
+        </span>
+      </div>
+    </span>
+    <Hr length={68}/>
+    <div className='info'>
+      <Network/>
+      <Vr large/>
+      <span>Available:&nbsp;{total||<Loader/>}</span>
+      <Vr large/>
+      <span>Indexing:&nbsp;{indexing||<Loader/>}</span>
+      <Vr large/>
+      <span>Synced:&nbsp;{synced||<Loader/>}</span>
+      <Vr large/>
+      <span>Syncing:&nbsp;{syncing||<Loader/>}</span>
     </div>
-    <Hr length={64}/>
+    <Hr length={68}/>
     <br />
     <section className='node-grid'>
       {nodes.map(({id}) => <Node id={id} key={id}/> )}
