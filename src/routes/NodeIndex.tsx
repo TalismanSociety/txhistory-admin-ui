@@ -17,18 +17,20 @@ import {
 import {
   Sun,
   Moon,
-  Network
+  Network,
+  Visible,
+  Invisible
 } from '../assets'
 
 
 export default () => {
-  const { isDarkMode, setIsDarkMode } = useAppContext()
+  const { isDarkMode, setIsDarkMode, showInactive, setShowInactive } = useAppContext()
   const { nodes, total, indexing, synced, syncing } = useNodeContext()
   const { logout, status } = useAdminContext()
   const { url, disconnect } = useDatasourceContext()
   const [panelOpen, setPanelOpen] = useState<boolean>(false)
 
-  const orderedNodes = [...nodes]
+  const orderedNodes = showInactive ? [...nodes] : [...nodes].filter(node => node.enabled)
   orderedNodes.sort((a, b) => a.id.toLowerCase() > b.id.toLowerCase() ? 1 : -1);
 
   return <div className='node-index-route'>
@@ -50,6 +52,11 @@ export default () => {
           <Toggle active={!!isDarkMode} onChange={setIsDarkMode}/>
           <Moon/>
         </span>
+        <span className='show-hide'>
+          <Invisible/>
+          <Toggle active={!!showInactive} onChange={setShowInactive}/>
+          <Visible/>
+        </span>
       </div>
     </span>
     <Hr length={68}/>
@@ -67,7 +74,7 @@ export default () => {
     <Hr length={68}/>
     <br />
     <section className='node-grid'>
-      {nodes.map(({id}) => <Node id={id} key={id}/> )}
+      {orderedNodes.map(({id}) => <Node id={id} key={id}/> )}
     </section>
     {panelOpen && <LoginPanel onClose={() => setPanelOpen(false)}/>}
   </div>
