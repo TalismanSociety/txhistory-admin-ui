@@ -52,7 +52,7 @@ body:before{
 /* light band */
 body:after{
   content: '';
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 0;
   width: 100vw;
