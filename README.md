@@ -3,7 +3,6 @@
 <img src="public/shaka.svg?v4" alt="Talisman" width="15%" align="right"/>
 
 [![website-link](https://img.shields.io/website?label=txhistory-admin-ui.netlify.app&style=flat-square&up_message=online&url=https%3A%2F%2Ftxhistory-admin-ui.netlify.app)](https://txhistory-admin-ui.netlify.app)
-[![discord-link](https://img.shields.io/discord/858891448271634473?logo=discord&logoColor=white&style=flat-square)](https://discord.gg/talisman)
 
 ## ℹ️ What is this?
 
